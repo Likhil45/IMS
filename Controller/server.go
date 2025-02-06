@@ -9,6 +9,7 @@ import (
 
 func StartServer() {
 	inv := storage.NewInventory()
+
 	r := gin.Default()
 	r.GET("/product", Home)
 	r.POST("/product/create", inv.AddProduct)
