@@ -146,3 +146,26 @@ func (p *Inventory) Restock(c *gin.Context) {
 	}
 
 }
+
+func (p *Inventory) UpdatePrice(c *gin.Context) {
+	var prod models.Product
+	err := c.BindJSON(&prod)
+	if err != nil {
+		c.JSON(400, gin.H{"msg": err.Error()})
+		fmt.Println("Unable to unmarshall the Data")
+		return
+	}
+	idstr := c.Param("id")
+	id, err := strconv.Atoi(idstr)
+	if err != nil {
+		fmt.Println("Unable to Convert to Integer")
+		return
+	}
+	for _, val := range p.products {
+		if val.ID == id {
+			val.UpdatePrice(prod.Price)
+			c.IndentedJSON(http.StatusOK, val)
+			return
+		}
+	}
+}

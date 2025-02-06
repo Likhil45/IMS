@@ -21,6 +21,7 @@ func StartServer() {
 	r.GET("/product/total", inv.TotalValue)
 	r.PUT("/product/sell/:id", inv.Sell)
 	r.PUT("/product/restock/:id", inv.Restock)
+	r.PUT("/product/price/:id", inv.UpdatePrice)
 
 	fmt.Println("Starting Server...")
 	r.Run()
