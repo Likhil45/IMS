@@ -114,3 +114,35 @@ func (p *Inventory) TotalValue(c *gin.Context) {
 	}
 	c.IndentedJSON(http.StatusOK, total)
 }
+func (p *Inventory) Sell(c *gin.Context) {
+	idstr := c.Param("id")
+	id, err := strconv.Atoi(idstr)
+	if err != nil {
+		fmt.Println("Unable to Convert to Integer")
+		return
+	}
+	for _, val := range p.products {
+		if val.ID == id {
+			val.Sell(id)
+			c.IndentedJSON(http.StatusOK, val)
+			return
+		}
+	}
+
+}
+func (p *Inventory) Restock(c *gin.Context) {
+	idstr := c.Param("id")
+	id, err := strconv.Atoi(idstr)
+	if err != nil {
+		fmt.Println("Unable to Convert to Integer")
+		return
+	}
+	for _, val := range p.products {
+		if val.ID == id {
+			val.Restock(id)
+			c.IndentedJSON(http.StatusOK, val)
+			return
+		}
+	}
+
+}

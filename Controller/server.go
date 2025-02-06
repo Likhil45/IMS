@@ -19,6 +19,8 @@ func StartServer() {
 	r.GET("/product/:name", inv.FindProductByName)
 	r.GET("/product/ctg/:category", inv.ListByCategory)
 	r.GET("/product/total", inv.TotalValue)
+	r.PUT("/product/sell/:id", inv.Sell)
+	r.PUT("/product/restock/:id", inv.Restock)
 
 	fmt.Println("Starting Server...")
 	r.Run()
