@@ -52,7 +52,7 @@ func (p *Inventory) UpdateProduct(c *gin.Context) {
 	}
 	var prod models.Product
 	err1 := c.BindJSON(&prod)
-	if err != nil {
+	if err1 != nil {
 		c.JSON(400, gin.H{"msg": err1.Error()})
 		fmt.Println("Unable to unmarshall the Data")
 		return
